@@ -12,14 +12,14 @@ export default function Footer() {
         <AiOutlineGithub size={32} style={{ paddingTop: "10%" }} />
       </a>
       <a
-        href="https://github.com/adelicia-js"
+        href="https://www.linkedin.com/in/adelicia/"
         target="_blank"
         rel="noopener noreferrer"
       >
         <AiFillLinkedin size={34} style={{ paddingTop: "15%" }} />
       </a>
       <a
-        href="https://www.linkedin.com/in/adelicia/"
+        href="https://github.com/adelicia-js/country_info"
         target="_blank"
         rel="noopener noreferrer"
       >
