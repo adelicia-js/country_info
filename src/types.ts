@@ -11,6 +11,14 @@ export interface CountryData {
     };
 }
 
+// Country List Item Type
+export interface CountryListItem {
+    name: {
+        common: string;
+    };
+    handleClick: () => void;
+}
+
 // Search Query Type
 export interface SearchItem {
     searchQuery: string;
