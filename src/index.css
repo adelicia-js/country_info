@@ -119,3 +119,14 @@ li {
     transform: rotate(360deg);
   }
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}

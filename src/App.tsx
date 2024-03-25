@@ -10,6 +10,7 @@ import Search from "./components/Search";
 import Country from "./components/Country";
 import CountryList from "./components/CountryList";
 import Loading from "./components/Loading";
+import Footer from "./components/Footer";
 
 // styles
 import "./App.css";
@@ -71,6 +72,7 @@ function App() {
       </h1>
       <Search searchQuery={search} handleSearchInput={handleSearchInput} />
       {countries ? render() : <Loading />}
+      <Footer/>
     </div>
   );
 }
