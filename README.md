@@ -5,7 +5,7 @@ This project is still WIP & was built using Vite + React + TypeScript and Axios,
 
 To initialize a template Vite + React + TS app:
 
-`npm create vite@latest my-vue-app -- --template vue`
+`npm create vite@latest demo -- --template react-ts`
 
 To clone the project: 
 
