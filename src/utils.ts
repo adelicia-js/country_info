@@ -10,3 +10,7 @@ export const filteredCountries = (
       .includes(searchQuery.toLowerCase());
   });
 };
+
+export const celsiusTemp = (temp: number) => {
+  return Math.round(temp - 273.15);
+}

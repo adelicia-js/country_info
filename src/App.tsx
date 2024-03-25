@@ -66,7 +66,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app">
       <h1 className="appTitle">
         <span className="appTitleHead">Country Info </span>App{`📌🗺️`}
       </h1>
