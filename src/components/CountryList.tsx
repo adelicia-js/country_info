@@ -1,10 +1,15 @@
 import { CountryListItem } from "../types";
+import {
+  CountryListContainer,
+  CountryName,
+  ShowButton,
+} from "./styled/Country";
 
 export default function CountryList(props: CountryListItem) {
   return (
-    <div className="countryList">
-      <p key={props.name.common}>{props.name.common}</p>
-      <button className="listBtn" onClick={props.handleClick}>Show</button>
-    </div>
+    <CountryListContainer>
+      <CountryName>{props.name.common}</CountryName>
+      <ShowButton onClick={props.handleClick}>Show</ShowButton>
+    </CountryListContainer>
   );
 }

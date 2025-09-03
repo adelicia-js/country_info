@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-
-// utils
 import countryServices from "./services/countries";
 import { CountryData } from "./types";
 import { filteredCountries } from "./utils";
-
-// components
 import Search from "./components/Search";
 import Country from "./components/Country";
 import CountryList from "./components/CountryList";
 import Loading from "./components/Loading";
 import Footer from "./components/Footer";
-
-// styles
-import "./App.css";
+import {
+  GlobalStyle,
+  Container,
+  SubContainer,
+  Header,
+  Title,
+  ResultsContainer,
+  MessageContainer,
+} from "./components/styled/Core";
 
 function App() {
   const [countries, setCountries] = useState<CountryData[]>([]);
@@ -41,24 +43,29 @@ function App() {
     const filteredCountriesResult = filteredCountries(countries, search);
 
     if (search.length > 0) {
-      if (filteredCountriesResult.length > 10) {
+      if (filteredCountriesResult.length > 3) {
         return (
-          <div className="countryList">
+          <MessageContainer>
             Too many matches, specify another filter.
-          </div>
+          </MessageContainer>
         );
       } else if (
         filteredCountriesResult.length > 1 &&
-        filteredCountriesResult.length <= 10
+        filteredCountriesResult.length <= 3
       ) {
-        return filteredCountriesResult.map((country) => {
-          return (
-            <CountryList
-              {...country}
-              handleClick={() => handleSpecificCountry(country.name.common)}
-            />
-          );
-        });
+        return (
+          <ResultsContainer>
+            {filteredCountriesResult.map((country) => {
+              return (
+                <CountryList
+                  {...country}
+                  key={country.name.common}
+                  handleClick={() => handleSpecificCountry(country.name.common)}
+                />
+              );
+            })}
+          </ResultsContainer>
+        );
       } else if (filteredCountriesResult.length === 1) {
         return <Country {...filteredCountriesResult[0]} />;
       }
@@ -66,14 +73,27 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1 className="appTitle">
-        <span className="appTitleHead">Country Info </span>App{`📌🗺️`}
-      </h1>
-      <Search searchQuery={search} handleSearchInput={handleSearchInput} />
-      {countries ? render() : <Loading />}
-      <Footer/>
-    </div>
+    <>
+      <GlobalStyle />
+      <Container>
+        <SubContainer>
+          <Header>
+            <Title>
+              <span role="img" aria-label="emoji">
+                🌍
+              </span>
+              Country Explorer
+              <span role="img" aria-label="emoji">
+                🗺️
+              </span>
+            </Title>
+          </Header>
+          <Search searchQuery={search} handleSearchInput={handleSearchInput} />
+          {countries ? render() : <Loading />}
+        </SubContainer>
+        <Footer />
+      </Container>
+    </>
   );
 }
 

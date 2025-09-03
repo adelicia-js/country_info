@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
-
-// utils
 import { CountryData, WeatherData } from "../types";
 import countryServices from "../services/countries";
 import { celsiusTemp } from "../utils";
-
 import Loading from "./Loading";
+import {
+  FlagContainer,
+  Flag,
+  InfoCards,
+  InfoCard,
+  CardTitle,
+  CardContent,
+  StatItem,
+  StatLabel,
+  StatValue,
+} from "./styled/Country";
 
 export default function Country(props: CountryData) {
   const [weatherData, setWeatherData] = useState<WeatherData>();
-
-  const mapLanguages = () => {
-    const langObject = props.languages;
-    const langValues = Object.values(langObject);
-    return langValues.map((language) => <li key={language}>{language}</li>);
-  };
 
   useEffect(() => {
     countryServices
@@ -24,41 +26,68 @@ export default function Country(props: CountryData) {
       });
   }, [props.latlng]);
 
-  return (
-    <div className="countryContainer">
-      <img src={props.flags.png} alt="country flag" />
-      <div className="countryDataContainer">
-        {props ? (
-          <div className="countryData">
-            <h2>{props.name.common}</h2>
-            <p>Capital: {props.capital}</p>
-            <p>Area: {props.area} sq. km.</p>
-            <p>Languages:</p>
-            <ul>{mapLanguages()}</ul>
-          </div>
-        ) : (
-          <div className="countryData loadingContainer">
-            {" "}
-            <Loading />
-          </div>
-        )}
+  const mapLanguages = () => {
+    const langObject = props.languages;
+    const langValues = Object.values(langObject);
+    return langValues.map((language) => <li key={language}>{language}</li>);
+  };
 
-        {weatherData ? (
-          <div className="weatherData">
-            <h2>Weather in {props.capital}</h2>
-            <p>Temperature: {celsiusTemp(weatherData.main.temp)}° Celsius</p>
-            <p>Wind: {weatherData.wind.speed}</p>
+  return (
+    <InfoCards>
+      <InfoCard>
+        <CardTitle>🌍 {props.name.common}</CardTitle>
+        <CardContent style={{ textAlign: "center" }}>
+          <FlagContainer>
+            <Flag src={props.flags.png} alt="country flag" />
+          </FlagContainer>
+        </CardContent>
+      </InfoCard>
+      
+      <InfoCard>
+        <CardTitle>🏛️ Basic Information</CardTitle>
+        <CardContent>
+          <StatItem>
+            <StatLabel>Capital</StatLabel>
+            <StatValue>{props.capital}</StatValue>
+          </StatItem>
+          <StatItem>
+            <StatLabel>Area</StatLabel>
+            <StatValue>{props.area} km²</StatValue>
+          </StatItem>
+          <StatItem>
+            <StatLabel>Languages</StatLabel>
+            <StatValue>
+              <ul>{mapLanguages()}</ul>
+            </StatValue>
+          </StatItem>
+        </CardContent>
+      </InfoCard>
+      
+      {weatherData ? (
+        <InfoCard>
+          <CardTitle>🌤️ Weather in {props.capital}</CardTitle>
+          <CardContent style={{ textAlign: "center", alignItems: "center" }}>
             <img
               src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
               alt="weather icon"
+              style={{ width: "100px", height: "100px" }}
             />
-          </div>
-        ) : (
-          <div className="weatherData loadingContainer">
+            <div style={{ fontSize: "2rem", color: "#ff6b6b", fontWeight: "600" }}>
+              {celsiusTemp(weatherData.main.temp)}°C
+            </div>
+            <div style={{ marginTop: "10px", color: "rgba(255,255,255,0.8)", fontSize: "0.9rem" }}>
+              {weatherData.weather[0].description} • Wind: {weatherData.wind.speed} km/h
+            </div>
+          </CardContent>
+        </InfoCard>
+      ) : (
+        <InfoCard>
+          <CardTitle>🌤️ Weather in {props.capital}</CardTitle>
+          <CardContent style={{ textAlign: "center" }}>
             <Loading />
-          </div>
-        )}
-      </div>
-    </div>
+          </CardContent>
+        </InfoCard>
+      )}
+    </InfoCards>
   );
 }

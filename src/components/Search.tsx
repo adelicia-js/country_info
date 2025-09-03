@@ -1,14 +1,15 @@
 import { SearchItem } from "../types";
+import { SearchContainer, SearchInput, SearchButton } from "./styled/Search";
 
 export default function Search(props: SearchItem) {
   return (
-    <p className="filterBar">
-      Find countries:{" "}
-      <input
-        className="searchInput"
+    <SearchContainer>
+      <SearchInput
+        placeholder="Discover any country..."
         value={props.searchQuery}
         onChange={props.handleSearchInput}
       />
-    </p>
+      <SearchButton>🔍</SearchButton>
+    </SearchContainer>
   );
 }
