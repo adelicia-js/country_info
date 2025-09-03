@@ -108,11 +108,4 @@ npm run build
 # Development server
 npm run dev
 ```
-
-## 📄 License
-
-This project was originally created as part of the [FullStackOpen](https://fullstackopen.com/en/part2/adding_styles_to_react_app#exercises-2-18-2-20) course and has been enhanced with modern UI/UX improvements.
-
----
-
 **Explore the world, one country at a time** 🗺️
