@@ -2,8 +2,8 @@
 
 A modern, responsive web application for exploring countries around the world with real-time weather data.
 
-[!NOTE] 
-This project was originally created as a part of the FullStackOpen course, Part 2. (https://fullstackopen.com/en/part2/adding_styles_to_react_app#exercises-2-18-2-20)
+> [!NOTE] 
+> This project was originally created as a part of the [FullStackOpen course, Part 2](https://fullstackopen.com/en/part2/adding_styles_to_react_app#exercises-2-18-2-20)
 
 <image src="public/app_screenshot.webp" width="85%" height="85%">
 
@@ -108,11 +108,4 @@ npm run build
 # Development server
 npm run dev
 ```
-
-## 📄 License
-
-This project was originally created as part of the [FullStackOpen](https://fullstackopen.com/en/part2/adding_styles_to_react_app#exercises-2-18-2-20) course and has been enhanced with modern UI/UX improvements.
-
----
-
 **Explore the world, one country at a time** 🗺️
